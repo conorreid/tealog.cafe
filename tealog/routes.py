@@ -90,16 +90,3 @@ def log_tea():
         template="log_tea-page",
         body="Log a Tea",
     )
-
-
-@main_bp.route("/tea_log", methods=["GET"])
-@login_required
-def tea_log():
-    """
-    Tea log
-    """
-    tea_choices = [
-        (tealog.tea, tealog.date)
-        for tealog in TeaLog.query.filter_by(user=current_user.get_id()).all()
-    ]
-    return str(tea_choices)
