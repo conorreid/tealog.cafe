@@ -1,0 +1,54 @@
+{% extends "layout.jinja2" %}
+
+{% block pagestyles %}
+  <link href="{{ url_for('static', filename='dist/css/test.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+  <div class="form-wrapper">
+
+    <div class="logo">
+      <img src="{{ url_for('static', filename='dist/img/logo.png') }}" alt="logo"/>
+    </div>
+
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+      </div>
+    {% endfor %}
+
+    <h1>Sign Up</h1>
+
+    <form method="POST" action="/create_tea">
+      {{ form.csrf_token }}
+
+      <fieldset class="name">
+        {{ form.name.label }}
+        {{ form.name(placeholder='Da Hong Pao') }}
+        {% if form.name.errors %}
+          <ul class="errors">
+            {% for error in form.email.errors %}
+              <li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </fieldset>
+
+      <fieldset class="price_per_gram">
+        {{ form.price_per_gram.label }}
+        {{ form.price_per_gram(placeholder=0.32) }}
+        {% if form.price_per_gram.errors %}
+          <ul class="errors">
+            {% for error in form.price_per_gram.errors %}
+              <li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </fieldset>
+
+      <div class="submit-button">
+        {{ form.submit }}
+      </div>
+
+    </form>
+  </div>
+{% endblock %}

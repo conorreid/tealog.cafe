@@ -1,0 +1,36 @@
+html {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px auto;
+  margin-top: 1.2rem;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: #393634;
+  background-color: #E8E4E2;
+  font-size: 16px;
+  line-height: 150%;
+}
+body {
+  font-size: 1.2rem;
+  background-color: #E8E4E2;
+}
+.canceled_text{
+  color: #585A40;
+  opacity: 0.5;
+}
+.main {
+  margin: 0 auto;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column !important;
+  justify-content: space-around;
+  align-items: flex-start;
+  text-align: left;
+  flex-wrap: wrap;
+  flex: 1;
+  color: #333;
+}
