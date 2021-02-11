@@ -16,6 +16,8 @@
 	  <li>{{ date|e }} {{ tea|e }}</li>
 	{% endfor %}
 	</ul>
+	<a href="{{ url_for('main_bp.log_tea') }}">Log a tea</a> </br>
+	<a href="{{ url_for('main_bp.create_tea') }}">Add a tea</a> </br>
     <a href="{{ url_for('main_bp.logout') }}">Log out</a>
   {% endif %}
 

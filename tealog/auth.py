@@ -24,7 +24,8 @@ def signup():
         existing_user = User.query.filter_by(email=form.email.data).first()
         if existing_user is None:
             user = User(
-                name=form.name.data, email=form.email.data,
+                name=form.name.data,
+                email=form.email.data,
             )
             user.set_password(form.password.data)
             db.session.add(user)

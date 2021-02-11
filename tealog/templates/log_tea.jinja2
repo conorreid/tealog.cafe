@@ -14,7 +14,7 @@
       </div>
     {% endfor %}
 
-    <h1>Sign Up</h1>
+    <h1>Log Tea</h1>
 
     <form method="POST" action="/log_tea">
       {{ form.csrf_token }}
@@ -34,7 +34,7 @@
 
       <fieldset class="date">
         {{ form.date.label }}
-        {{ form.date(placeholder=0.32) }}
+        {{ form.date(placeholder="2012-12-21") }}
         {% if form.date.errors %}
           <ul class="errors">
             {% for error in form.date.errors %}

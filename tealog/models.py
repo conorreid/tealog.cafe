@@ -37,15 +37,11 @@ class Tea(db.Model):
     __tablename__ = "tea"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False, unique=False)
-    # teatype = db.Column(
-    #     db.Integer,
-    #     db.ForeignKey('teatype.id'),
-    #     nullable=False
-    # )
     price_per_gram = db.Column(
         db.Float,
     )
     tea_log = db.relationship("TeaLog", backref="tea", lazy=True)
+    created_on = db.Column(db.DateTime, index=False, unique=False, nullable=True)
 
 
 class TeaLog(db.Model):
@@ -56,6 +52,5 @@ class TeaLog(db.Model):
         db.Integer,
         db.ForeignKey("flasklogin-users.id"),
     )
-    datetime = db.Column(
-        db.DateTime,
-    )
+    date = db.Column(db.DateTime)
+    created_on = db.Column(db.DateTime, index=False, unique=False, nullable=True)

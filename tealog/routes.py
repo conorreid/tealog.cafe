@@ -16,7 +16,8 @@ main_bp = Blueprint(
 def dashboard():
     """Logged-in User Dashboard."""
     user = User.query.filter_by(id=current_user.get_id()).first()
-    tea_log = [(log.tea.name, log.datetime) for log in user.tea_log]
+    tea_log_unsorted = [(log.tea.name, log.date.date()) for log in user.tea_log]
+    tea_log = sorted(tea_log_unsorted, key=lambda x: x[1], reverse=True)
     return render_template(
         "dashboard.jinja2",
         title="Tea Log",
@@ -77,7 +78,7 @@ def log_tea():
     # Validate login attempt
     if form.validate_on_submit():
         tea_log = TeaLog(
-            tea_id=form.tea.data, datetime=form.date.data, user_id=current_user.get_id()
+            tea_id=form.tea.data, date=form.date.data, user_id=current_user.get_id()
         )
         db.session.add(tea_log)
         db.session.commit()  # Create new tea log
@@ -98,7 +99,7 @@ def tea_log():
     Tea log
     """
     tea_choices = [
-        (tealog.tea, tealog.datetime)
+        (tealog.tea, tealog.date)
         for tealog in TeaLog.query.filter_by(user=current_user.get_id()).all()
     ]
     return str(tea_choices)
