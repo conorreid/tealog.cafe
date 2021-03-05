@@ -1,13 +1,7 @@
 """Sign-up & log-in forms."""
 from flask_wtf import FlaskForm
-from wtforms import (
-    DateField,
-    FloatField,
-    PasswordField,
-    SelectField,
-    StringField,
-    SubmitField,
-)
+from wtforms import (DateField, FloatField, PasswordField, SelectField,
+                     StringField, SubmitField)
 from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional
 
 from .models import Tea
@@ -61,7 +55,6 @@ class TeaAddForm(FlaskForm):
 
 
 class TeaLogForm(FlaskForm):
-    tea_choices = [(tea.id, tea.name) for tea in Tea.query.all()]
-    tea = SelectField("Tea", validators=[DataRequired()], choices=tea_choices)
+    tea = SelectField("Tea", validators=[DataRequired()])
     date = DateField("Date", validators=[DataRequired()])
     submit = SubmitField("Log")

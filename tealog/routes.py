@@ -75,6 +75,7 @@ def log_tea():
     # Bypass if user is logged in
 
     form = TeaLogForm()
+    form.tea.choices = [(tea.id, tea.name) for tea in Tea.query.all()]
     # Validate login attempt
     if form.validate_on_submit():
         tea_log = TeaLog(
